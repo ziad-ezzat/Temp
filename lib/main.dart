@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gr_project/modules/login_screen.dart';
-import 'package:gr_project/modules/onBoarding_screen.dart';
+import 'Views/Pages/onBoarding_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,7 +10,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnboardingScreen(),
     );

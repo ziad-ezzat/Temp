@@ -1,19 +1,24 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
+import '../Components/onBoarding_back_btn.dart';
+import '../Components/onBoarding_continue_btn.dart';
+import '../Components/onBoarding_skip_btn.dart';
+import 'package:gr_project/constants.dart';
+
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  
   int _currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
-  final List<String> _images = [
-    'assets/images/onBoardingFirst.png',
-    'assets/images/onBoardingSecond.png',
-    'assets/images/onBoardingThird.png',
-  ];
-
+  
   @override
   void dispose() {
     _pageController.dispose();
@@ -27,7 +32,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: <Widget>[
           PageView.builder(
             controller: _pageController,
-            itemCount: _images.length,
+            itemCount: onBoarding_images.length,
             onPageChanged: (int page) {
               setState(() {
                 _currentPage = page;
@@ -37,32 +42,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               return Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(_images[index], fit: BoxFit.cover),
-                  const Positioned(
+                  Image.asset(onBoarding_images[index], fit: BoxFit.cover),
+                  Positioned(
                     bottom: 120,
                     left: 0,
                     right: 0,
                     child: Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Journal Your Thoughts!',
-                            style: TextStyle(
+                            onBoarding_titles[index],
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 32,
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           SizedBox(
                             width: 327,
                             child: Text(
-                              'Use our journaling feature to write or record your thoughts. This is your safe space to reflect and share your emotions.',
-                              style: TextStyle(
+                              onBoarding_descriptions[index],
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
                                 fontFamily: 'Open Sans',
@@ -81,26 +86,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Positioned(
             top: 50,
             right: 20,
-            child: TextButton(
-              child: const Text('Skip',
-                  style: TextStyle(color: Colors.white, fontSize: 18)),
-              onPressed: () {},
-            ),
+            child: buildSkipButton(context),
           ),
           if (_currentPage != 0)
             Positioned(
               top: 50,
               left: 20,
-              child: TextButton(
-                child: const Text('Back',
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
-                onPressed: () {
-                  _pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn,
-                  );
-                },
-              ),
+              child: buildBackButton(_pageController),
             ),
           Positioned(
             bottom: 100,
@@ -109,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                _images.length,
+                onBoarding_images.length,
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -130,21 +122,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             left: 0,
             right: 0,
             child: Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(21, 101, 192, 1),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                ),
-                child: const Text('Continue',
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
-                onPressed: () async {
-                  if (_currentPage == _images.length - 1) {
-                  } else {}
-                },
-              ),
+              child: buildContinueButton(context, _pageController, _currentPage, onBoarding_images.length),
             ),
           ),
         ],

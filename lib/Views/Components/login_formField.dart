@@ -1,29 +1,6 @@
 import 'package:flutter/material.dart';
 
-ElevatedButton defaultButton({
-  required String text,
-  required width,
-  required height,
-  required VoidCallback onPressed,
-  Color buttonColor = Colors.blue,
-  Color textColor = Colors.white,
-  double fontSize = 18,
-}) {
-  return ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      primary: buttonColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-    ),
-    onPressed: onPressed,
-    child: Text(
-      text,
-      style: TextStyle(color: textColor, fontSize: fontSize),
-    ),
-  );
-}
-
-Widget defaultFormField({
+Widget buildFormField({
   required TextEditingController controller,
   required TextInputType type,
   ValueChanged<String>? onSubmit,
