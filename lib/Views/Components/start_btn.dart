@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Widget buildStartButton(bool isUserSelected, BuildContext context) {
   return Container(
@@ -8,15 +9,19 @@ Widget buildStartButton(bool isUserSelected, BuildContext context) {
     margin: const EdgeInsets.symmetric(vertical: 50),
     height: 50,
     child: ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         if (isUserSelected) {
           print('User');
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool('seen_start_screen', true);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
         } else {
           print('Doctor');
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool('seen_start_screen', true);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
