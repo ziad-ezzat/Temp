@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-
-import '../Pages/login_screen.dart';
+import 'package:gr_project/Views/Pages/start_screen.dart';
 
 
 Widget buildContinueButton(BuildContext context, PageController pageController, int currentPage, int pageCount) {
@@ -19,7 +18,7 @@ Widget buildContinueButton(BuildContext context, PageController pageController, 
       if (currentPage == pageCount - 1) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => const StartScreen()),
         );
       } else {
         pageController.nextPage(

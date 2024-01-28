@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Pending extends StatelessWidget {
-  const Pending({super.key});
+class PendingScreen extends StatelessWidget {
+  const PendingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

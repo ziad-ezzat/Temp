@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../Components/approved_btn.dart';
 
-class Approved extends StatelessWidget {
-  const Approved({super.key});
+class ApprovedScreen extends StatelessWidget {
+  const ApprovedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

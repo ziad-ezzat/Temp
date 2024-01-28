@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../Components/rejection_btn.dart';
 
-class Rejection extends StatelessWidget {
-  const Rejection({super.key});
+class RejectionScreen extends StatelessWidget {
+  const RejectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
