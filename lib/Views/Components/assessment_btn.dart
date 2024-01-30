@@ -13,8 +13,10 @@ Widget buildContinueButton() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
+        primary: Colors.blue, // Set the button background color
+        onPrimary: Colors.white, // Set the button text color
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -25,11 +27,10 @@ Widget buildContinueButton() {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Image.asset(
-              "assets/images/chevron-right.png",
-              width: 30,
-              height: 20,
+            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: Icon(
+              Icons.arrow_forward,
+              size: 20,
             ),
           )
         ],
