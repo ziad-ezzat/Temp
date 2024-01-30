@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Components/onBoarding_back_btn.dart';
 import '../Components/onBoarding_continue_btn.dart';

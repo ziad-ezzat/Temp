@@ -12,7 +12,7 @@ Widget buildFormField({
   required IconData prefix,
   IconData? suffix,
   VoidCallback? suffixPressed,
-  bool isClickable = true,
+  bool isClickable = true, 
 }) =>
     TextFormField(
       controller: controller,
@@ -36,6 +36,6 @@ Widget buildFormField({
                 ),
               )
             : null,
-        border: const OutlineInputBorder(),
+            border: const OutlineInputBorder(),
       ),
     );

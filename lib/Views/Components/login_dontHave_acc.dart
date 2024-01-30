@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildRowDonHaveAcc(BuildContext context) {
+Widget buildRowDonHaveAcc() {
   return const Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [

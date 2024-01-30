@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/approved_screen.dart';
+import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
 import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:gr_project/Views/Pages/pending_screen.dart';
 import 'package:gr_project/Views/Pages/rejection_screen.dart';

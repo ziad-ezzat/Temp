@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gr_project/Views/Components/login_formField.dart';
+import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
 
+import '../Components/formField.dart';
 import '../Components/login_dontHave_acc.dart';
 import '../Components/login_welcome.dart';
 
@@ -99,7 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text('Remember me'),
                       Spacer(),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EmailScreen(),
+                            ),
+                          );
+                        },
                         child: Text('Forget Password ?'),
                       ),
                     ],
@@ -134,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                buildRowDonHaveAcc(context), 
+                buildRowDonHaveAcc(), 
               ],
             ),
           ),
