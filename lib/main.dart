@@ -5,7 +5,9 @@ import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:gr_project/Views/Pages/pending_screen.dart';
 import 'package:gr_project/Views/Pages/rejection_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
+import 'Views/Components/assessment_second_questions.dart';
 import 'Views/Pages/assessment_screen/assessment_first.dart';
+import 'Views/Pages/assessment_screen/assessment_second.dart';
 import 'Views/Pages/assessment_screen/assessment_seventh.dart';
 import 'Views/Pages/assessment_screen/assessment_sixth.dart';
 import 'Views/Pages/onBoarding_screen.dart';
@@ -31,7 +33,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AssessmentSeventh(), //defaultHome,
+      home: AssessmentSecond(), //defaultHome,
     );
   }
 }
