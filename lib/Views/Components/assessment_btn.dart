@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-Widget buildContinueButton() {
+Widget buildContinueButton(VoidCallback onPressed) {
   return Container(
     width: double.infinity,
     padding: const EdgeInsets.symmetric(horizontal: 20),
     height: 50,
     child: ElevatedButton(
-      onPressed: () {
-        // Add your logic here
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        primary: Colors.blue, // Set the button background color
-        onPrimary: Colors.white, // Set the button text color
+        primary: Colors.blue,
+        onPrimary: Colors.white,
       ),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,

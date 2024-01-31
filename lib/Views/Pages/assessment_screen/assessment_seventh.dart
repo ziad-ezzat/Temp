@@ -15,6 +15,7 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: buildAppBar(context, "Assessment", "7 of 7"),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         final double screenWidth = constraints.maxWidth;
@@ -22,13 +23,6 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
 
         return Column(
           children: [
-            SizedBox(
-              height: screenHeight * 0.06,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(screenWidth * 0.06, 0, 0, 0),
-              child: buildBar(screenWidth, screenHeight, "Assessment", "7 of 7"),
-            ),
             SizedBox(
               height: screenHeight * 0.07,
             ),
@@ -53,7 +47,10 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
             SizedBox(
               height: screenHeight * 0.23,
             ),
-            buildContinueButton(),
+            buildContinueButton( () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSeventh())
+              );
+            }),
           ],
         );
       }),

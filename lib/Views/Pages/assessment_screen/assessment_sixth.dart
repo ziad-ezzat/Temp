@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Components/assessment_bar.dart';
 import '../../Components/assessment_btn.dart';
 import '../../Components/assessment_sixth_questions.dart';
+import 'assessment_seventh.dart';
 
 class AssessmentSixth extends StatefulWidget {
   const AssessmentSixth({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _AssessmentSixthState extends State<AssessmentSixth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: buildAppBar(context, "Assessment", "6 of 7"),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final double screenWidth = constraints.maxWidth;
@@ -24,14 +26,6 @@ class _AssessmentSixthState extends State<AssessmentSixth> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: screenHeight * 0.06,
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(screenWidth * 0.06, 0, 0, 0),
-                  child: buildBar(
-                      screenWidth, screenHeight, "Assessment", "6 of 7"),
-                ),
                 SizedBox(
                   height: screenHeight * 0.07,
                 ),
@@ -56,7 +50,9 @@ class _AssessmentSixthState extends State<AssessmentSixth> {
                 SizedBox(
                   height: screenHeight * 0.37,
                 ),
-                buildContinueButton(),
+                buildContinueButton( () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSeventh()));
+                }),
               ],
             ),
           );
