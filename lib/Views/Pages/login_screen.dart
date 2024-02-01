@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gr_project/Views/Pages/assessment_screen/assessment_first.dart';
 import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
 
 import '../Components/formField.dart';
@@ -124,8 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: MaterialButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          print(emailController.text);
-                          print(passwordController.text);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentFirst(),),);
                         }
                       },
                       color: Color(0xFF2196F3),

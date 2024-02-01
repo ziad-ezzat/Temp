@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Components/assessment_bar.dart';
 import 'package:gr_project/Views/Components/assessment_btn.dart';
 
+import 'assesment_third.dart';
+
 class AssessmentSecond extends StatefulWidget {
   const AssessmentSecond({super.key});
 
@@ -111,7 +113,7 @@ Widget build(BuildContext context) {
                 height: screenHeight * 0.15,
               ),
               buildContinueButton( () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSecond()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AssesmentThird()));
               },
               ),
             ],
