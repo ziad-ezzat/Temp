@@ -14,536 +14,537 @@ class _HomePagesState extends State<HomePages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          final double screenWidth = constraints.maxWidth;
-          final double screenHeight = constraints.maxHeight;
-          return Column(
-            children: [
-              SizedBox(
-                height: screenHeight * 0.023,
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0, 0, 0),
-                child: Row(
-                  children: [
-                    Image(
-                      image: const AssetImage("assets/images/Photo.png"),
-                      width: screenWidth * 0.08,
-                      height: screenHeight * 0.08,
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height,
+          ),
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              final double screenWidth = constraints.maxWidth;
+              final double screenHeight = constraints.maxHeight;
+              return Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0, 0, 0),
+                    child: Row(
+                      children: [
+                        Image(
+                          image: const AssetImage("assets/images/Photo.png"),
+                          width: screenWidth * 0.08,
+                          height: screenHeight * 0.08,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
+                          child: Text(
+                            "Home",
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.06,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
+                          child: Icon(
+                            Icons.notifications_none,
+                            size: screenWidth * 0.08,
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.06,
-                          fontWeight: FontWeight.w600,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(screenWidth * 0.04,
+                          screenWidth * 0.01, screenWidth * 0.04, 0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(vertical: screenWidth * 0.06),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.05, 0, 0, 0),
+                                    child: Text(
+                                      'Welcome loly,',
+                                      style: TextStyle(
+                                        fontSize: screenWidth * 0.045,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(screenWidth * 0.05,
+                                        screenWidth * 0.005, 0, 0),
+                                    child: Text(
+                                      'Each day is a new opportnuity for',
+                                      style: TextStyle(
+                                        fontSize: screenWidth * 0.032,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.05, 0, 0, 0),
+                                    child: Text(
+                                      'healing and growth',
+                                      style: TextStyle(
+                                        fontSize: screenWidth * 0.032,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
-                      child: Icon(
-                        Icons.notifications_none,
-                        size: screenWidth * 0.08,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(screenWidth * 0.04,
-                    screenWidth * 0.01, screenWidth * 0.04, 0),
-                child: Container(
-                  height: screenHeight * 0.15,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: screenWidth * 0.06),
+                    ),       
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0,
+                          screenWidth * 0.03, screenWidth * 0.02),
+                      child: Container(
+                        height: screenHeight * 0.23,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  screenWidth * 0.05, 0, 0, 0),
-                              child: Text(
-                                'Welcome loly,',
-                                style: TextStyle(
-                                  fontSize: screenWidth * 0.045,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      screenWidth * 0.04, screenWidth * 0.03, 0, 0),
+                                  child: Text(
+                                    "How are you feeling today ?",
+                                    style: TextStyle(
+                                      fontSize: screenWidth * 0.04,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(screenWidth * 0.05,
-                                  screenWidth * 0.005, 0, 0),
-                              child: Text(
-                                'Each day is a new opportnuity for',
-                                style: TextStyle(
-                                  fontSize: screenWidth * 0.032,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.045,
+                                      vertical: screenHeight * 0.03),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          "assets/images/Solid mood overjoyed.png",
+                                        ),
+                                        width: screenWidth * 0.09,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.01),
+                                        child: Text(
+                                          "Happy",
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color.fromARGB(
+                                                255, 140, 140, 140),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.045,
+                                      vertical: screenHeight * 0.03),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          "assets/images/Solid mood neutral.png",
+                                        ),
+                                        width: screenWidth * 0.09,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.01),
+                                        child: Text(
+                                          "Manic",
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color.fromARGB(
+                                                255, 140, 140, 140),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.045,
+                                      vertical: screenHeight * 0.03),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          "assets/images/Solid mood sad.png",
+                                        ),
+                                        width: screenWidth * 0.09,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.01),
+                                        child: Text(
+                                          "Angry",
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color.fromARGB(
+                                                255, 140, 140, 140),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.045,
+                                      vertical: screenHeight * 0.001),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          "assets/images/Solid mood depressed.png",
+                                        ),
+                                        width: screenWidth * 0.09,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.01),
+                                        child: Text(
+                                          "Sad",
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color.fromARGB(
+                                                255, 140, 140, 140),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.045,
+                                      vertical: screenHeight * 0.03),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: const AssetImage(
+                                          "assets/images/Solid mood happy.png",
+                                        ),
+                                        width: screenWidth * 0.09,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.01),
+                                        child: Text(
+                                          "Calm",
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.035,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color.fromARGB(
+                                                255, 140, 140, 140),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  screenWidth * 0.05, 0, 0, 0),
+                            Center(
                               child: Text(
-                                'healing and growth',
+                                "Start Your test now",
                                 style: TextStyle(
-                                  fontSize: screenWidth * 0.032,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                                  fontSize: screenWidth * 0.043,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      )
-                    ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              /*SizedBox(
-              height: screenHeight * 0.01,
-            ),*/
-              Padding(
-                padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0,
-                    screenWidth * 0.03, screenWidth * 0.02),
-                child: Container(
-                  height: screenHeight * 0.23,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          screenWidth * 0.04, screenWidth * 0.04, 0, 0),
+                      child: Row(
                         children: [
+                          Text(
+                            "Recommended for you",
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.04,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                screenWidth * 0.04, screenWidth * 0.03, 0, 0),
+                            padding: EdgeInsets.fromLTRB(screenWidth * 0.35, 0, 0, 0),
                             child: Text(
-                              "How are you feeling today ?",
+                              "See all",
                               style: TextStyle(
-                                fontSize: screenWidth * 0.04,
+                                fontSize: screenWidth * 0.035,
                                 fontWeight: FontWeight.w400,
+                                color: Colors.blue,
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.045,
-                                vertical: screenHeight * 0.03),
-                            child: Column(
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    "assets/images/Solid mood overjoyed.png",
-                                  ),
-                                  width: screenWidth * 0.09,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01),
-                                  child: Text(
-                                    "Happy",
-                                    style: TextStyle(
-                                      fontSize: screenWidth * 0.035,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color.fromARGB(
-                                          255, 140, 140, 140),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.045,
-                                vertical: screenHeight * 0.03),
-                            child: Column(
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    "assets/images/Solid mood neutral.png",
-                                  ),
-                                  width: screenWidth * 0.09,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01),
-                                  child: Text(
-                                    "Manic",
-                                    style: TextStyle(
-                                      fontSize: screenWidth * 0.035,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color.fromARGB(
-                                          255, 140, 140, 140),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.045,
-                                vertical: screenHeight * 0.03),
-                            child: Column(
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    "assets/images/Solid mood sad.png",
-                                  ),
-                                  width: screenWidth * 0.09,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01),
-                                  child: Text(
-                                    "Angry",
-                                    style: TextStyle(
-                                      fontSize: screenWidth * 0.035,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color.fromARGB(
-                                          255, 140, 140, 140),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.045,
-                                vertical: screenHeight * 0.001),
-                            child: Column(
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    "assets/images/Solid mood depressed.png",
-                                  ),
-                                  width: screenWidth * 0.09,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01),
-                                  child: Text(
-                                    "Sad",
-                                    style: TextStyle(
-                                      fontSize: screenWidth * 0.035,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color.fromARGB(
-                                          255, 140, 140, 140),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.045,
-                                vertical: screenHeight * 0.03),
-                            child: Column(
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                    "assets/images/Solid mood happy.png",
-                                  ),
-                                  width: screenWidth * 0.09,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01),
-                                  child: Text(
-                                    "Calm",
-                                    style: TextStyle(
-                                      fontSize: screenWidth * 0.035,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color.fromARGB(
-                                          255, 140, 140, 140),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Center(
-                        child: Text(
-                          "Start Your test now",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.043,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    screenWidth * 0.04, screenWidth * 0.04, 0, 0),
-                child: Row(
-                  children: [
-                    Text(
-                      "Recommended for you",
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.04,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * 0.35, 0, 0, 0),
-                      child: Text(
-                        "See all",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.035,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.03),
-              SizedBox(
-                width: screenWidth,
-                height: screenHeight * 0.4,
-                child: ListView.builder(
-                  itemCount: getList.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * 0.03,
-                          screenWidth * 0.01, screenWidth * 0.03, 0),
-                      child: Container(
-                        height: screenHeight * 0.01,
-                        width: screenWidth - 10,
-                        decoration: BoxDecoration(
-                          color: Colors.white38,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: AssetImage(
-                                  getList[index].docImage,
-                                ),
-                              ),
-                              title: Text(
-                                getList[index].docName,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                              ),
-                              subtitle: Text(
-                                getList[index].docSpecialist,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                              ),
-                              trailing: TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.star,
-                                  size: screenWidth * 0.05,
-                                  color: Colors.amber,
-                                ),
-                                label: Text(
-                                  "Top therapists",
-                                  style: TextStyle(
-                                    fontSize: screenWidth * 0.04,
-                                  ),
-                                ),
-                              ),
+                  Expanded(
+                    flex: 4,
+                    child: ListView.builder(
+                      itemCount: getList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.fromLTRB(screenWidth * 0.03,
+                              screenWidth * 0.01, screenWidth * 0.03, 0),
+                          child: Container(
+                            height: screenHeight * 0.01,
+                            width: screenWidth - 10,
+                            decoration: BoxDecoration(
+                              color: Colors.white38,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey.shade300),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: screenWidth * 0.18),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: screenWidth * 0.04,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: screenWidth * 0.04,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: screenWidth * 0.04,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: screenWidth * 0.04,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: screenWidth * 0.04,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.18,
-                                  top: screenWidth * 0.01),
-                              child: Text(
-                                getList[index].rate,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.04,
-                                  top: screenWidth * 0.01),
-                              child: Text(
-                                "Inerests:",
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.02,
-                                  top: screenWidth * 0.01),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: screenHeight * 0.05,
-                                    width: screenWidth * 0.3,
-                                    decoration: BoxDecoration(
-                                      color: Colors.lightBlue.shade50,
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "Description",
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                        ),
-                                      ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                      getList[index].docImage,
                                     ),
                                   ),
-                                  const SizedBox(width: 5),
-                                  Container(
-                                    height: screenHeight * 0.05,
-                                    width: screenWidth * 0.6,
-                                    decoration: BoxDecoration(
-                                      color: Colors.lightBlue.shade50,
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "Specific Phobia and Social Phobia",
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                        ),
-                                      ),
+                                  title: Text(
+                                    getList[index].docName,
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: screenWidth * 0.04,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.04,
-                                  top: screenWidth * 0.01),
-                              child: Row(
-                                children: [
-                                  const Icon(
-                                    Icons.money,
-                                    color: Colors.green,
-                                  ),
-                                  Text(
-                                    "${getList[index].price.toString()} EGP",
-                                    style: const TextStyle(
-                                      color: Colors.green,
+                                  subtitle: Text(
+                                    getList[index].docSpecialist,
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: screenWidth * 0.04,
                                     ),
                                   ),
-                                  Text(
-                                    "/ ${getList[index].perMinute} min",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.07,
-                                  top: screenWidth * 0.05),
-                              child: Row(
-                                children: [
-                                  ElevatedButton(
+                                  trailing: TextButton.icon(
                                     onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color.fromARGB(
-                                          255, 237, 236, 236),
+                                    icon: Icon(
+                                      Icons.star,
+                                      size: screenWidth * 0.05,
+                                      color: Colors.amber,
                                     ),
-                                    child: Text(
-                                      "View profile",
-                                      style: TextStyle(color: Colors.blue),
-                                    ),
-                                  ),
-                                  SizedBox(width: screenWidth * 0.01),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.2, 0, 0, 0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "BooK now",
+                                    label: Text(
+                                      "Top therapists",
+                                      style: TextStyle(
+                                        fontSize: screenWidth * 0.04,
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(left: screenWidth * 0.18),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                        size: screenWidth * 0.04,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                        size: screenWidth * 0.04,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                        size: screenWidth * 0.04,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                        size: screenWidth * 0.04,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                        size: screenWidth * 0.04,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.18,
+                                      top: screenWidth * 0.01),
+                                  child: Text(
+                                    getList[index].rate,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.04,
+                                      top: screenWidth * 0.01),
+                                  child: const Text(
+                                    "Inerests:",
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.02,
+                                      top: screenWidth * 0.01),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: screenHeight * 0.05,
+                                        width: screenWidth * 0.3,
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightBlue.shade50,
+                                          borderRadius: BorderRadius.circular(30),
+                                        ),
+                                        child: const Center(
+                                          child: Text(
+                                            "Description",
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Container(
+                                        height: screenHeight * 0.05,
+                                        width: screenWidth * 0.6,
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightBlue.shade50,
+                                          borderRadius: BorderRadius.circular(30),
+                                        ),
+                                        child: const Center(
+                                          child: Text(
+                                            "Specific Phobia and Social Phobia",
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.04,
+                                      top: screenWidth * 0.01),
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.money,
+                                        color: Colors.green,
+                                      ),
+                                      Text(
+                                        "${getList[index].price.toString()} EGP",
+                                        style: const TextStyle(
+                                          color: Colors.green,
+                                        ),
+                                      ),
+                                      Text(
+                                        "/ ${getList[index].perMinute} min",
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.07,
+                                      top: screenWidth * 0.05),
+                                  child: Row(
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 237, 236, 236),
+                                        ),
+                                        child: const Text(
+                                          "View profile",
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ),
+                                      SizedBox(width: screenWidth * 0.01),
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                            screenWidth * 0.2, 0, 0, 0),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                            "BooK now",
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          );
-        },
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
