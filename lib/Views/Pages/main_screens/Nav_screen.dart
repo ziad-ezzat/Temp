@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/main_screens/MySpace.dart';
 import 'package:gr_project/Views/Pages/main_screens/Therapist.dart';
 import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
-import 'package:gr_project/Views/Pages/main_screens/setting.dart';
+import 'package:gr_project/Views/Pages/main_screens/profile_screen.dart';
 
 class myBottomNavBar extends StatefulWidget {
   const myBottomNavBar({super.key});
@@ -17,7 +17,7 @@ class _myBottomNavBarState extends State<myBottomNavBar> {
     HomePages(),
     TherapistPage(),
     MySpacePage(),
-    SettingPage(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,11 @@ class _myBottomNavBarState extends State<myBottomNavBar> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.space_dashboard_outlined), label: "My space"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: "Setting"),
+                icon: Image(
+                  image: AssetImage("assets/images/Photo.png"),
+                  width: 30,
+                ),
+                label: "Profile"),
           ]),
       body: pages[myCurrentIndex],
     );
