@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../journaling_text.dart';
+import '../journaling_voice.dart';
+
 class MySpacePage extends StatefulWidget {
   const MySpacePage({super.key});
 
@@ -29,25 +32,24 @@ class _MySpaceState extends State<MySpacePage> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "My Space",
-          style: TextStyle(
-            fontSize: screenWidth * 0.05,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
+        appBar: AppBar(
+          title: Text(
+            "My Space",
+            style: TextStyle(
+              fontSize: screenWidth * 0.05,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
           ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
+        body: SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height,
-          ),
+              maxHeight: MediaQuery.of(context).size.height,
+            ),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 return Column(
@@ -74,7 +76,10 @@ class _MySpaceState extends State<MySpacePage> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.04, screenWidth * 0.03, 0, 0),
+                                        screenWidth * 0.04,
+                                        screenWidth * 0.03,
+                                        0,
+                                        0),
                                     child: Text(
                                       "How are you feeling today ?",
                                       style: TextStyle(
@@ -356,7 +361,50 @@ class _MySpaceState extends State<MySpacePage> {
             ),
           ),
         ),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.mic),
+                      title: Text('Voice Journaling'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => JournalingVoicePage(),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.text_fields),
+                      title: Text('Text Journaling'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => JournalingTextPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.blue,
+        ));
   }
 }
