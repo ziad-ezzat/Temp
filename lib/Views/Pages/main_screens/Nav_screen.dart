@@ -34,9 +34,17 @@ class _myBottomNavBarState extends State<myBottomNavBar> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded), label: "Home"),
+                icon: ImageIcon(
+                  AssetImage("assets/images/home.png"),
+                  size: 25,
+                ),
+                label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_4_outlined), label: "Therapists"),
+                icon: ImageIcon(
+                  AssetImage("assets/images/doctor.png"),
+                  size: 30,
+                ),
+                label: "Therapists"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.space_dashboard_outlined), label: "My space"),
             BottomNavigationBarItem(
