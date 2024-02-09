@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gr_project/Views/Pages/edit_profile_screen.dart';
+import 'package:gr_project/Views/Pages/notifications_screen.dart';
 import 'package:gr_project/models/horizontal_list.dart';
 
 class HomePages extends StatefulWidget {
@@ -25,6 +27,9 @@ class _HomePagesState extends State<HomePages> {
               final double screenHeight = constraints.maxHeight;
               return Column(
                 children: [
+                  SizedBox(
+                    height: screenHeight * 0.04,
+                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0, 0, 0),
                     child: Row(
@@ -35,7 +40,8 @@ class _HomePagesState extends State<HomePages> {
                           height: screenHeight * 0.08,
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
+                          padding:
+                              EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
                           child: Text(
                             "Home",
                             style: TextStyle(
@@ -45,74 +51,88 @@ class _HomePagesState extends State<HomePages> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
-                          child: Icon(
-                            Icons.notifications_none,
-                            size: screenWidth * 0.08,
+                          padding:
+                              EdgeInsets.fromLTRB(screenWidth * 0.3, 0, 0, 0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationsScreen(),
+                                ),
+                              );
+                            },
+                            child: Icon(
+                              Icons.notifications_none,
+                              size: screenWidth * 0.08,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * 0.04,
-                          screenWidth * 0.01, screenWidth * 0.04, 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: screenWidth * 0.06),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.05, 0, 0, 0),
-                                    child: Text(
-                                      'Welcome loly,',
-                                      style: TextStyle(
-                                        fontSize: screenWidth * 0.045,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                    padding: EdgeInsets.fromLTRB(screenWidth * 0.04,
+                        screenWidth * 0.01, screenWidth * 0.04, 0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenWidth * 0.06),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      screenWidth * 0.05, 0, 0, 0),
+                                  child: Text(
+                                    'Welcome loly,',
+                                    style: TextStyle(
+                                      fontSize: screenWidth * 0.045,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(screenWidth * 0.05,
-                                        screenWidth * 0.005, 0, 0),
-                                    child: Text(
-                                      'Each day is a new opportnuity for',
-                                      style: TextStyle(
-                                        fontSize: screenWidth * 0.032,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      screenWidth * 0.05,
+                                      screenWidth * 0.005,
+                                      0,
+                                      0),
+                                  child: Text(
+                                    'Each day is a new opportnuity for',
+                                    style: TextStyle(
+                                      fontSize: screenWidth * 0.032,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.05, 0, 0, 0),
-                                    child: Text(
-                                      'healing and growth',
-                                      style: TextStyle(
-                                        fontSize: screenWidth * 0.032,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      screenWidth * 0.05, 0, 0, 0),
+                                  child: Text(
+                                    'healing and growth',
+                                    style: TextStyle(
+                                      fontSize: screenWidth * 0.032,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    ),       
+                    ),
+                  ),
                   Expanded(
                     flex: 3,
                     child: Padding(
@@ -134,7 +154,10 @@ class _HomePagesState extends State<HomePages> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(
-                                      screenWidth * 0.04, screenWidth * 0.03, 0, 0),
+                                      screenWidth * 0.04,
+                                      screenWidth * 0.03,
+                                      0,
+                                      0),
                                   child: Text(
                                     "How are you feeling today ?",
                                     style: TextStyle(
@@ -305,32 +328,33 @@ class _HomePagesState extends State<HomePages> {
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          screenWidth * 0.04, screenWidth * 0.04, 0, 0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Recommended for you",
+                    padding: EdgeInsets.fromLTRB(
+                        screenWidth * 0.04, screenWidth * 0.04, 0, 0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Recommended for you",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.04,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.fromLTRB(screenWidth * 0.35, 0, 0, 0),
+                          child: Text(
+                            "See all",
                             style: TextStyle(
-                              fontSize: screenWidth * 0.04,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              fontSize: screenWidth * 0.035,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.blue,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(screenWidth * 0.35, 0, 0, 0),
-                            child: Text(
-                              "See all",
-                              style: TextStyle(
-                                fontSize: screenWidth * 0.035,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                  ),
                   Expanded(
                     flex: 4,
                     child: ListView.builder(
@@ -446,7 +470,8 @@ class _HomePagesState extends State<HomePages> {
                                         width: screenWidth * 0.3,
                                         decoration: BoxDecoration(
                                           color: Colors.lightBlue.shade50,
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
                                         child: const Center(
                                           child: Text(
@@ -463,7 +488,8 @@ class _HomePagesState extends State<HomePages> {
                                         width: screenWidth * 0.6,
                                         decoration: BoxDecoration(
                                           color: Colors.lightBlue.shade50,
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
                                         child: const Center(
                                           child: Text(
