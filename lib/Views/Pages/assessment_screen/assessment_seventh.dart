@@ -3,6 +3,7 @@ import 'package:gr_project/Views/Components/assessment_btn.dart';
 
 import '../../Components/assessment_bar.dart';
 import '../../Components/assessment_seventh_questions.dart';
+import '../main_screens/Nav_screen.dart';
 
 class AssessmentSeventh extends StatefulWidget {
   const AssessmentSeventh({super.key});
@@ -48,7 +49,7 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
               height: screenHeight * 0.23,
             ),
             buildContinueButton( () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSeventh())
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const myBottomNavBar())
               );
             }),
           ],
