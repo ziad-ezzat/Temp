@@ -27,9 +27,6 @@ class _HomePagesState extends State<HomePages> {
               final double screenHeight = constraints.maxHeight;
               return Column(
                 children: [
-                  SizedBox(
-                    height: screenHeight * 0.04,
-                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0, 0, 0),
                     child: Row(

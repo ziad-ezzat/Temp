@@ -25,64 +25,76 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         title: Text('Notifications', style: TextStyle(color: Colors.black)),
         centerTitle: true,
       ),
-      body: notifications.isEmpty
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/PushNotifications.png'),
-                  Text(
-                    'No notification yet !',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF161C2B),
-                      fontSize: 24,
-                      fontFamily: 'Open Sans',
-                      fontWeight: FontWeight.w600,
-                      height: 0.05,
-                    ),
-                  ),
-                  Text(
-                    'Your notifications will appear here',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF6F6F79),
-                      fontSize: 14,
-                      fontFamily: 'Open Sans',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : ListView(
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
+          ),
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              final double screenWidth = constraints.maxWidth;
+              final double screenHeight = constraints.maxHeight;
+            return notifications.isEmpty
+            ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Today',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Image.asset('assets/images/PushNotifications.png'),
+                const Text(
+                  'No notification yet !',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF161C2B),
+                    fontSize: 24,
+                    fontFamily: 'Open Sans',
+                    fontWeight: FontWeight.w600,
+                    height: 0.05,
+                  ),
                 ),
-                ...notifications,
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Yesterday',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(
+                  'Your notifications will appear here',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF6F6F79),
+                    fontSize: 14,
+                    fontFamily: 'Open Sans',
+                    fontWeight: FontWeight.w400,
+                    height: 0,
+                  ),
                 ),
-                ...notifications,
               ],
-            ),
+            )
+            : Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Today',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                  ),
+                  ...notifications,
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Yesterday',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                  ),
+                  ...notifications,
+                ],
+              );
+            }
+          ),
+        ),
+      ),
     );
   }
 
   List<Widget> dummyNotifications() {
     return List<Widget>.generate(
       5,
-      (index) => ListTile(
+      (index) => const ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage('https://via.placeholder.com/50'),
+          radius: 25,
+          backgroundImage: AssetImage('assets/images/Photo.png'),
         ),
         subtitle: Text('This is a dummy notification'),
         trailing: Text('12:00 PM'),

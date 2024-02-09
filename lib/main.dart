@@ -7,6 +7,7 @@ import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:gr_project/Views/Pages/main_screens/Nav_screen.dart';
 import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
+import 'Views/Pages/notifications_screen.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
