@@ -22,7 +22,8 @@ class _AssesmentFourthState extends State<AssesmentFourth> {
           final double screenWidth = constraints.maxWidth;
           final double screenHeight = constraints.maxHeight;
           return SingleChildScrollView(
-              child: Column(children: [
+            child: Column(
+              children: [
                 SizedBox(
                   height: screenHeight * 0.07,
                 ),
@@ -41,9 +42,9 @@ class _AssesmentFourthState extends State<AssesmentFourth> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.2,
+                  height: screenHeight * 0.08,
                 ),
-                AssesmetFourthRate(),
+                const AssesmetFourthRate(),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, screenWidth * 0.03, 0, 0),
                   child: Text(
@@ -58,10 +59,18 @@ class _AssesmentFourthState extends State<AssesmentFourth> {
                 SizedBox(
                   height: screenHeight * 0.35,
                 ),
-                buildContinueButton( () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSixth()));
-                }),
-              ]),
+                buildContinueButton(
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AssessmentSixth(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         },
       ),

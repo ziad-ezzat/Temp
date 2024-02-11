@@ -3,6 +3,7 @@ import 'package:gr_project/Views/Pages/assessment_screen/assessment_first.dart';
 import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
 
 import '../Components/formField.dart';
+import 'signup_screen_user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   Checkbox(
-                    value: rememberMe, // Update this line
+                    value: rememberMe,
                     onChanged: (value) {
                       setState(() {
                         rememberMe = value!;
@@ -117,7 +118,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   GestureDetector(
-                    // Wrap the Text widget with GestureDetector
                     onTap: () {
                       setState(() {
                         rememberMe = !rememberMe;
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: const Text(
-                        'Forget Password'), // Remove the question mark
+                        'Forget Password'),
                   ),
                 ],
               ),
@@ -167,6 +167,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Don\'t have an account?'),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text('Register'),
+                  ),
+                ],
               ),
             ],
           ),

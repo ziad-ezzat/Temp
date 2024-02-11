@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../Components/start_btn.dart';
+import 'doctor_service_page.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
