@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../journaling_text.dart';
 import '../journaling_voice.dart';
@@ -13,6 +17,38 @@ class MySpacePage extends StatefulWidget {
 class _MySpaceState extends State<MySpacePage> {
   bool isExpandedYourJournaling = false;
   bool isExpandedYourReports = false;
+  final player = FlutterSoundPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    initPlayer();
+  }
+
+  Future<void> initPlayer() async {
+    await player.openPlayer();
+  }
+
+  Future<void> playAudio() async {
+
+    // Get the directory where the app can store files.
+    final Directory? appDocDir = await getExternalStorageDirectory();
+
+    // Create a file path under the app directory.
+    final String filePath = '${appDocDir?.path}/audio.aac';
+
+    await player.startPlayer(
+      fromURI: filePath,
+    );
+
+    print('Playing' + filePath);
+  }
+
+  @override
+  void dispose() {
+    player.closePlayer();
+    super.dispose();
+  }
 
   void toggleExpand() {
     setState(() {
@@ -311,13 +347,10 @@ class _MySpaceState extends State<MySpacePage> {
                             padding: EdgeInsets.symmetric(
                               horizontal: screenWidth * 0.05,
                             ),
-                            child: Text(
-                              "Your Reports",
-                              style: TextStyle(
-                                fontSize: screenWidth * 0.04,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            child: ElevatedButton(
+                              onPressed: playAudio,
+                              child: Text('Play Audio'),
+                            )
                           ),
                           Icon(
                             isExpandedYourReports
@@ -352,7 +385,7 @@ class _MySpaceState extends State<MySpacePage> {
                             fontSize: screenWidth * 0.035,
                             fontWeight: FontWeight.w400,
                           ),
-                        ),
+                        )
                       ),
                     ],
                   ],

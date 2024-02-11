@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gr_project/Views/Pages/assessment_screen/assesment_fourth.dart';
-import 'package:gr_project/Views/Pages/assessment_screen/assesment_third.dart';
-import 'package:gr_project/Views/Pages/edit_profile_screen.dart';
 
 import 'package:gr_project/Views/Pages/login_screen.dart';
-import 'package:gr_project/Views/Pages/main_screens/Nav_screen.dart';
-import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
-import 'Views/Pages/notifications_screen.dart';
+import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Views/Pages/main_screens/MySpace.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +15,7 @@ void main() async {
   Widget _defaultHome = seenOnboarding
       ? (seenStartScreen ? const LoginScreen() : const StartScreen())
       : const OnboardingScreen();
+
   runApp(MainApp(_defaultHome));
 }
 
