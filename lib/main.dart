@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
 import 'package:provider/provider.dart';
+import 'Views/Pages/doctor_service_page.dart';
 import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';

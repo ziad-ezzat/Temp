@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Pages/doctor_service_page.dart';
+
 Widget buildStartButton(bool isUserSelected, BuildContext context) {
   return Container(
     width: double.infinity,
@@ -24,7 +26,7 @@ Widget buildStartButton(bool isUserSelected, BuildContext context) {
           prefs.setBool('seen_start_screen', true);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
+            MaterialPageRoute(builder: (context) => DoctorServicePage()),
           );
         }
       },
