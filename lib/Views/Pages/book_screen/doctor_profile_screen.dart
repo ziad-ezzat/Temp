@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:gr_project/Views/Components/profil_appbar.dart';
 import 'package:gr_project/Views/Components/date_picker.dart' as date;
-import 'package:gr_project/Views/Pages/appoinyment_screen.dart';
+
+import 'appoinyment_screen.dart';
 
 class DoctorProfilePage extends StatefulWidget {
   const DoctorProfilePage({super.key});
@@ -48,7 +48,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         padding:
                             EdgeInsets.fromLTRB(screenWidth * 0.04, 0, 0, 0),
                         child: const Image(
-                          image: AssetImage("assets/images/Therapist.png"),
+                          image: AssetImage("assets/images/Photo.png"),
                         ),
                       ),
                       Column(

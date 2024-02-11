@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gr_project/Views/Components/formField.dart';
 import 'package:gr_project/Views/Components/profil_appbar.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -241,22 +240,134 @@ class _PaymentPageState extends State<PaymentPage> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.46,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                screenWidth * 0.02, 0, screenWidth * 0.02, 0),
+                            child: TextFormField(
+                              controller: cityController,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelText: 'Expire Date',
+                                hintText: "MM/YY",
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade700,
+                                    width: 1,
+                                  ),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.46,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                screenWidth * 0.02, 0, screenWidth * 0.02, 0),
+                            child: TextFormField(
+                              controller: cityController,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelText: 'CVC',
+                                hintText: "123",
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade700,
+                                    width: 1,
+                                  ),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade300,
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(
-                    height: screenHeight * 0.2,
+                    height: screenHeight * 0.02,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        fixedSize:
-                            Size(screenWidth * 0.9, screenHeight * 0.08)),
-                    onPressed: () {},
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      fixedSize: Size(screenWidth * 0.9, screenHeight * 0.08),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            title: Text('Payment Successful'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Icon(Icons.check_circle,
+                                    color: Colors.green, size: 100),
+                                Text(
+                                    'Your payment has been successfully processed.'),
+                              ],
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('Done'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     child: Text(
                       "Pay \$61.00",
                       style: TextStyle(
-                          color: Colors.white, fontSize: screenWidth * 0.04),
+                        color: Colors.white,
+                        fontSize: screenWidth * 0.04,
+                      ),
                     ),
                   ),
                   SizedBox(

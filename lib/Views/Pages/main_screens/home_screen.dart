@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gr_project/Views/Pages/book_screen/doctor_profile_screen.dart';
+import 'package:gr_project/Views/Pages/doctor_service_page.dart';
 import 'package:gr_project/Views/Pages/edit_profile_screen.dart';
 import 'package:gr_project/Views/Pages/notifications_screen.dart';
 import 'package:gr_project/models/horizontal_list.dart';
+
+import '../book_screen/appoinyment_screen.dart';
 
 class HomePages extends StatefulWidget {
   const HomePages({super.key});
@@ -556,7 +560,15 @@ class _HomePagesState extends State<HomePages> {
                                           child: Row(
                                             children: [
                                               ElevatedButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DoctorServicePage(),
+                                                    ),
+                                                  );
+                                                },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:
                                                       const Color.fromARGB(
@@ -574,7 +586,15 @@ class _HomePagesState extends State<HomePages> {
                                                 padding: EdgeInsets.fromLTRB(
                                                     screenWidth * 0.2, 0, 0, 0),
                                                 child: ElevatedButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            DoctorProfilePage(),
+                                                      ),
+                                                    );
+                                                  },
                                                   child: const Text(
                                                     "BooK now",
                                                   ),

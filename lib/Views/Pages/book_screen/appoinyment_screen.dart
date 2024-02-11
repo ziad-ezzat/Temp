@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Components/profil_appbar.dart';
 import 'package:intl/intl.dart';
 
+import 'payment_screen.dart';
+
 class AppointmentPage extends StatefulWidget {
   final DateTime dateTime;
   final String choice;
@@ -40,7 +42,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                         padding:
                             EdgeInsets.fromLTRB(screenWidth * 0.04, 0, 0, 0),
                         child: const Image(
-                          image: AssetImage("assets/images/Therapist.png"),
+                          image: AssetImage("assets/images/Photo.png"),
                         ),
                       ),
                       Column(
@@ -374,7 +376,12 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               ),
                               fixedSize:
                                   Size(screenWidth * 0.7, screenHeight * 0.07)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PaymentPage()));
+                          },
                           child: Text(
                             "Book Apointment",
                             style: TextStyle(

@@ -16,6 +16,9 @@ dependencies:
   hexcolor: ^3.0.1
   permission_handler: ^11.0.1
   provider: ^6.0.1
+  intl: ^0.18.0
+  get: ^4.6.6
+  date_picker_timeline: ^1.2.5
 
 dev_dependencies:
   flutter_test:

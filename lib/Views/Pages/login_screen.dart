@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gr_project/Views/Pages/assessment_screen/assessment_first.dart';
 import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
+import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
 
 import '../Components/formField.dart';
+import 'main_screens/Nav_screen.dart';
 import 'signup_screen_user.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -149,10 +151,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: MaterialButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AssessmentFirst(),
+                            builder: (context) => myBottomNavBar(),
                           ),
                         );
                       }

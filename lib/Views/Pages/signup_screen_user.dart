@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'assessment_screen/assessment_first.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -334,7 +335,12 @@ class _SignUpProcess1State extends State<SignUpScreen> {
                           ),
                           minimumSize: const Size(double.infinity, 50),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AssessmentFirst()));
+                        },
                         child: const Text(
                           "Sign up",
                           style: TextStyle(
