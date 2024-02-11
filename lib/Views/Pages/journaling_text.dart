@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../note_provider.dart';
 
 class JournalingTextPage extends StatelessWidget {
+  final _titleController = TextEditingController();
+  final _bodyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final noteProvider = Provider.of<NoteProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -24,17 +30,19 @@ class JournalingTextPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.check, color: Colors.black),
             onPressed: () {
+              noteProvider.addNote(_titleController.text, _bodyController.text);
               Navigator.pop(context);
             },
           ),
         ],
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: _titleController,
               decoration: InputDecoration(
                 labelText: 'Title',
               ),
@@ -47,6 +55,7 @@ class JournalingTextPage extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: TextField(
+                  controller: _bodyController,
                   decoration: InputDecoration(
                     labelText: 'Body',
                   ),

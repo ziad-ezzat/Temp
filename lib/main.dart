@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gr_project/Views/Pages/assessment_screen/assesment_fourth.dart';
-import 'package:gr_project/Views/Pages/assessment_screen/assesment_third.dart';
-import 'package:gr_project/Views/Pages/edit_profile_screen.dart';
 
 import 'package:gr_project/Views/Pages/login_screen.dart';
-import 'package:gr_project/Views/Pages/main_screens/Nav_screen.dart';
-import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
+import 'package:provider/provider.dart';
+import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Views/Pages/main_screens/MySpace.dart';
+import 'note_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +17,13 @@ void main() async {
   Widget _defaultHome = seenOnboarding
       ? (seenStartScreen ? const LoginScreen() : const StartScreen())
       : const OnboardingScreen();
-  runApp(MainApp(_defaultHome));
+
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => NoteProvider(),
+        child: MainApp(_defaultHome),
+      ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -28,9 +33,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AssesmentFourth(),
+      home: defaultHome,
     );
   }
 }

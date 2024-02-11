@@ -11,7 +11,7 @@ class HomePages extends StatefulWidget {
 }
 
 class _HomePagesState extends State<HomePages> {
-  List<HorizontalList> getList = getHorizontalList();
+  Future<List<HorizontalList>> getList = getHorizontalList();
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,6 @@ class _HomePagesState extends State<HomePages> {
               final double screenHeight = constraints.maxHeight;
               return Column(
                 children: [
-                  SizedBox(
-                    height: screenHeight * 0.04,
-                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0, 0, 0),
                     child: Row(
@@ -357,214 +354,243 @@ class _HomePagesState extends State<HomePages> {
                   ),
                   Expanded(
                     flex: 4,
-                    child: ListView.builder(
-                      itemCount: getList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.fromLTRB(screenWidth * 0.03,
-                              screenWidth * 0.01, screenWidth * 0.03, 0),
-                          child: Container(
-                            height: screenHeight * 0.01,
-                            width: screenWidth - 10,
-                            decoration: BoxDecoration(
-                              color: Colors.white38,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade300),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                      getList[index].docImage,
+                    child: FutureBuilder(
+                        future: getList,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text(
+                                "Error: ${snapshot.error}",
+                              ),
+                            );
+                          } else {
+                            List<HorizontalList>? data = snapshot.data;
+
+                            return ListView.builder(
+                              itemCount: data!.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      screenWidth * 0.03,
+                                      screenWidth * 0.01,
+                                      screenWidth * 0.03,
+                                      0),
+                                  child: Container(
+                                    height: screenHeight * 0.01,
+                                    width: screenWidth - 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white38,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: Colors.grey.shade300),
                                     ),
-                                  ),
-                                  title: Text(
-                                    getList[index].docName,
-                                    style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: screenWidth * 0.04,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                    getList[index].docSpecialist,
-                                    style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: screenWidth * 0.04,
-                                    ),
-                                  ),
-                                  trailing: TextButton.icon(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.star,
-                                      size: screenWidth * 0.05,
-                                      color: Colors.amber,
-                                    ),
-                                    label: Text(
-                                      "Top therapists",
-                                      style: TextStyle(
-                                        fontSize: screenWidth * 0.04,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(left: screenWidth * 0.18),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: screenWidth * 0.04,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: screenWidth * 0.04,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: screenWidth * 0.04,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: screenWidth * 0.04,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: screenWidth * 0.04,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenWidth * 0.18,
-                                      top: screenWidth * 0.01),
-                                  child: Text(
-                                    getList[index].rate,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenWidth * 0.04,
-                                      top: screenWidth * 0.01),
-                                  child: const Text(
-                                    "Inerests:",
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenWidth * 0.02,
-                                      top: screenWidth * 0.01),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: screenHeight * 0.05,
-                                        width: screenWidth * 0.3,
-                                        decoration: BoxDecoration(
-                                          color: Colors.lightBlue.shade50,
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            "Description",
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                              data[index].docImage,
+                                            ),
+                                          ),
+                                          title: Text(
+                                            data[index].docName,
                                             style: TextStyle(
-                                              color: Colors.blue,
+                                              color: Colors.black87,
+                                              fontSize: screenWidth * 0.04,
+                                            ),
+                                          ),
+                                          subtitle: Text(
+                                            data[index].docSpecialist,
+                                            style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: screenWidth * 0.04,
+                                            ),
+                                          ),
+                                          trailing: TextButton.icon(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.star,
+                                              size: screenWidth * 0.05,
+                                              color: Colors.amber,
+                                            ),
+                                            label: Text(
+                                              "Top therapists",
+                                              style: TextStyle(
+                                                fontSize: screenWidth * 0.04,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Container(
-                                        height: screenHeight * 0.05,
-                                        width: screenWidth * 0.6,
-                                        decoration: BoxDecoration(
-                                          color: Colors.lightBlue.shade50,
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            "Specific Phobia and Social Phobia",
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                            ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.18),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: screenWidth * 0.04,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: screenWidth * 0.04,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: screenWidth * 0.04,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: screenWidth * 0.04,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: screenWidth * 0.04,
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenWidth * 0.04,
-                                      top: screenWidth * 0.01),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.money,
-                                        color: Colors.green,
-                                      ),
-                                      Text(
-                                        "${getList[index].price.toString()} EGP",
-                                        style: const TextStyle(
-                                          color: Colors.green,
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.18,
+                                              top: screenWidth * 0.01),
+                                          child: Text(
+                                            data[index].rate,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "/ ${getList[index].perMinute} min",
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenWidth * 0.07,
-                                      top: screenWidth * 0.05),
-                                  child: Row(
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color.fromARGB(
-                                              255, 237, 236, 236),
-                                        ),
-                                        child: const Text(
-                                          "View profile",
-                                          style: TextStyle(color: Colors.blue),
-                                        ),
-                                      ),
-                                      SizedBox(width: screenWidth * 0.01),
-                                      Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            screenWidth * 0.2, 0, 0, 0),
-                                        child: ElevatedButton(
-                                          onPressed: () {},
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.04,
+                                              top: screenWidth * 0.01),
                                           child: const Text(
-                                            "BooK now",
+                                            "Inerests:",
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.02,
+                                              top: screenWidth * 0.01),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                height: screenHeight * 0.05,
+                                                width: screenWidth * 0.3,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      Colors.lightBlue.shade50,
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    "Description",
+                                                    style: TextStyle(
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 5),
+                                              Container(
+                                                height: screenHeight * 0.05,
+                                                width: screenWidth * 0.6,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      Colors.lightBlue.shade50,
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    "Specific Phobia and Social Phobia",
+                                                    style: TextStyle(
+                                                      color: Colors.blue,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.04,
+                                              top: screenWidth * 0.01),
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.money,
+                                                color: Colors.green,
+                                              ),
+                                              Text(
+                                                "${data[index].price.toString()} EGP",
+                                                style: const TextStyle(
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                              Text(
+                                                "/ ${data[index].perMinute} min",
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.07,
+                                              top: screenWidth * 0.05),
+                                          child: Row(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          255, 237, 236, 236),
+                                                ),
+                                                child: const Text(
+                                                  "View profile",
+                                                  style: TextStyle(
+                                                      color: Colors.blue),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  width: screenWidth * 0.01),
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    screenWidth * 0.2, 0, 0, 0),
+                                                child: ElevatedButton(
+                                                  onPressed: () {},
+                                                  child: const Text(
+                                                    "BooK now",
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                                );
+                              },
+                            );
+                          }
+                        }),
                   ),
                 ],
               );

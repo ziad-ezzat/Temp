@@ -1,6 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../../note_provider.dart';
 
 class JournalingVoicePage extends StatefulWidget {
   @override
@@ -8,30 +15,45 @@ class JournalingVoicePage extends StatefulWidget {
 }
 
 class _JournalingVoicePageState extends State<JournalingVoicePage> {
-  bool isPlaying = false;
-  double seconds = 0.0;
-  double minutes = 0.0;
-  double hours = 0.0;
-  Timer? timer;
+  final recorder = FlutterSoundRecorder();
 
-  void startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        seconds++;
-        if (seconds >= 60) {
-          minutes++;
-          seconds = 0;
-        }
-        if (minutes >= 60) {
-          hours++;
-          minutes = 0;
-        }
-      });
-    });
+  @override
+  void initState() {
+    super.initState();
+    initRecorder();
   }
 
-  void stopTimer() {
-    timer?.cancel();
+  @override
+  void dispose() {
+    recorder.closeRecorder();
+    super.dispose();
+  }
+
+  Future<void> initRecorder() async {
+    final status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted) {
+      throw RecordingPermissionException('Microphone permission not granted');
+    }
+    await recorder.openRecorder();
+    recorder.setSubscriptionDuration(const Duration(milliseconds: 500));
+  }
+
+  Future<void> record() async {
+    final noteProvider = Provider.of<NoteProvider>(context, listen: false);
+    final Directory appDocDir = await getApplicationDocumentsDirectory();
+    final String filePath = '${appDocDir.path}/audio${noteProvider.voiceNotes.length+1}.aac';
+    await recorder.startRecorder(toFile: filePath);
+  }
+
+  Future<void> stop() async {
+    await recorder.stopRecorder();
+  }
+
+  Future<void> requestStoragePermission() async {
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
   }
 
   @override
@@ -41,22 +63,24 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
-          'Journaling',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.0,
-          ),
-        ),
+        title: Text('Journaling', style: TextStyle(color: Colors.black, fontSize: 20.0)),
         centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.check, color: Colors.black),
-            onPressed: () {
+            onPressed: () async {
+              final audioPath = await recorder.stopRecorder();
+              if (audioPath != null) {
+                await requestStoragePermission();
+                final noteProvider = Provider.of<NoteProvider>(context, listen: false);
+                final Directory? appDocDir = await getExternalStorageDirectory();
+                final String filePath = '${appDocDir?.path}/audio${noteProvider.voiceNotes.length+1}.aac';
+                final audioFile = File(audioPath);
+                await audioFile.copy(filePath);
+                noteProvider.addVoiceNote(filePath);
+              }
               Navigator.pop(context);
             },
           ),
@@ -66,34 +90,30 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              hours.toStringAsFixed(0) + ':' + minutes.toStringAsFixed(0) + ':' + seconds.toStringAsFixed(0),
-              style: TextStyle(fontSize: 50 , fontWeight: FontWeight.bold),
+            StreamBuilder<RecordingDisposition>(
+                stream: recorder.onProgress,
+                builder: (context, snapshot) {
+                  final duration = snapshot.data?.duration ?? Duration.zero;
+                  String twoDigits(int n) => n.toString().padLeft(2, '0');
+                  final twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+                  final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+                  return Text('$twoDigitMinutes:$twoDigitSeconds', style: TextStyle(fontSize: 40.0));
+                }),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () async {
+                if (recorder.isRecording) {
+                  await stop();
+                } else {
+                  await record();
+                }
+                setState(() {});
+              },
+              child: Icon(recorder.isRecording ? Icons.stop : Icons.mic, size: 80.0),
             ),
-            SizedBox(height: 20),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-              startTimer();
-            } else {
-              stopTimer();
-            }
-          });
-        },
-        child: Icon(isPlaying ? Icons.stop : Icons.play_arrow),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
-  }
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
   }
 }

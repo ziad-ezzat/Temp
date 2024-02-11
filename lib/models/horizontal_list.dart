@@ -1,3 +1,6 @@
+import 'package:gr_project/Model/enums/AccountType.dart';
+import 'package:gr_project/mock.dart';
+
 class HorizontalList {
   String docImage;
   String docName;
@@ -15,14 +18,16 @@ class HorizontalList {
   });
 }
 
-List<HorizontalList> getHorizontalList() {
+Future<List<HorizontalList>> getHorizontalList() async {
   List<HorizontalList> list = [];
+
+  Mock mock = await Mock.create();
 
   list.add(
     HorizontalList(
       docImage: 'assets/images/Photo.png',
-      docName: 'Mona Ali',
-      docSpecialist: 'Psychologist',
+      docName: mock.therapist.mail,
+      docSpecialist: mock.therapist.type.toString().split('.').last,
       rate: '4.9 (5587 reviews)',
       price: 350,
       perMinute: 30,
