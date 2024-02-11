@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:gr_project/Views/Pages/appoinyment_screen.dart';
+import 'package:gr_project/Views/Pages/doctor_profile_screen.dart';
 
 import 'package:gr_project/Views/Pages/login_screen.dart';
+import 'package:gr_project/Views/Pages/payment_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
 import 'package:provider/provider.dart';
 import 'Views/Pages/journaling_voice.dart';
@@ -19,10 +23,10 @@ void main() async {
       : const OnboardingScreen();
 
   runApp(
-      ChangeNotifierProvider(
-        create: (context) => NoteProvider(),
-        child: MainApp(_defaultHome),
-      ),
+    ChangeNotifierProvider(
+      create: (context) => NoteProvider(),
+      child: MainApp(_defaultHome),
+    ),
   );
 }
 
@@ -33,9 +37,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MySpacePage(),
+      home: PaymentPage(),
     );
   }
 }
