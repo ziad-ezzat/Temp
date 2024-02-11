@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
+import '../../../note_provider.dart';
+import '../../Components/start_your_test.dart';
 import '../journaling_text.dart';
 import '../journaling_voice.dart';
 
@@ -66,6 +69,7 @@ class _MySpaceState extends State<MySpacePage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final noteProvider = Provider.of<NoteProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -91,200 +95,7 @@ class _MySpaceState extends State<MySpacePage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(screenWidth * 0.03, 0,
-                            screenWidth * 0.03, screenWidth * 0.02),
-                        child: Container(
-                          height: screenHeight * 0.23,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.04,
-                                        screenWidth * 0.03,
-                                        0,
-                                        0),
-                                    child: Text(
-                                      "How are you feeling today ?",
-                                      style: TextStyle(
-                                        fontSize: screenWidth * 0.04,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: screenWidth * 0.045,
-                                        vertical: screenHeight * 0.03),
-                                    child: Column(
-                                      children: [
-                                        Image(
-                                          image: const AssetImage(
-                                            "assets/images/Solid mood overjoyed.png",
-                                          ),
-                                          width: screenWidth * 0.09,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: screenHeight * 0.01),
-                                          child: Text(
-                                            "Happy",
-                                            style: TextStyle(
-                                              fontSize: screenWidth * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color.fromARGB(
-                                                  255, 140, 140, 140),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: screenWidth * 0.045,
-                                        vertical: screenHeight * 0.03),
-                                    child: Column(
-                                      children: [
-                                        Image(
-                                          image: const AssetImage(
-                                            "assets/images/Solid mood neutral.png",
-                                          ),
-                                          width: screenWidth * 0.09,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: screenHeight * 0.01),
-                                          child: Text(
-                                            "Manic",
-                                            style: TextStyle(
-                                              fontSize: screenWidth * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color.fromARGB(
-                                                  255, 140, 140, 140),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: screenWidth * 0.045,
-                                        vertical: screenHeight * 0.03),
-                                    child: Column(
-                                      children: [
-                                        Image(
-                                          image: const AssetImage(
-                                            "assets/images/Solid mood sad.png",
-                                          ),
-                                          width: screenWidth * 0.09,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: screenHeight * 0.01),
-                                          child: Text(
-                                            "Angry",
-                                            style: TextStyle(
-                                              fontSize: screenWidth * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color.fromARGB(
-                                                  255, 140, 140, 140),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: screenWidth * 0.045,
-                                        vertical: screenHeight * 0.001),
-                                    child: Column(
-                                      children: [
-                                        Image(
-                                          image: const AssetImage(
-                                            "assets/images/Solid mood depressed.png",
-                                          ),
-                                          width: screenWidth * 0.09,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: screenHeight * 0.01),
-                                          child: Text(
-                                            "Sad",
-                                            style: TextStyle(
-                                              fontSize: screenWidth * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color.fromARGB(
-                                                  255, 140, 140, 140),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: screenWidth * 0.045,
-                                        vertical: screenHeight * 0.03),
-                                    child: Column(
-                                      children: [
-                                        Image(
-                                          image: const AssetImage(
-                                            "assets/images/Solid mood happy.png",
-                                          ),
-                                          width: screenWidth * 0.09,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: screenHeight * 0.01),
-                                          child: Text(
-                                            "Calm",
-                                            style: TextStyle(
-                                              fontSize: screenWidth * 0.035,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color.fromARGB(
-                                                  255, 140, 140, 140),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Center(
-                                child: Text(
-                                  "Start Your test now",
-                                  style: TextStyle(
-                                    fontSize: screenWidth * 0.043,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    buildStartTestContainer(context, screenWidth, screenHeight),
                     SizedBox(height: screenHeight * 0.03),
                     GestureDetector(
                       onTap: toggleExpand,
@@ -311,32 +122,103 @@ class _MySpaceState extends State<MySpacePage> {
                       ),
                     ),
                     if (isExpandedYourJournaling) ...[
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.05,
-                          vertical: screenHeight * 0.01,
-                        ),
-                        child: Text(
-                          "Text Journaling",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.035,
-                            fontWeight: FontWeight.w400,
+                      if (noteProvider.notes.isEmpty) ...{
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.05,
+                            vertical: screenHeight * 0.01,
+                          ),
+                          child: Text(
+                            "No notes yet",
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.035,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.05,
-                          vertical: screenHeight * 0.01,
-                        ),
-                        child: Text(
-                          "Voices Journaling",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.035,
-                            fontWeight: FontWeight.w400,
+                      } else ...{
+                        for (var note in noteProvider.notes.entries) ...{
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.05,
+                              vertical: screenHeight * 0.01,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  note.key,
+                                  style: TextStyle(
+                                    fontSize: screenWidth * 0.045,
+                                    // Increase the font size for the title
+                                    fontWeight: FontWeight.bold, // Make the title bold
+                                  ),
+                                ),
+                                Text(
+                                  note.value,
+                                  style: TextStyle(
+                                    fontSize: screenWidth * 0.035,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        },
+                      },
+                      if (noteProvider.voiceNotes.isEmpty) ...{
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.05,
+                            vertical: screenHeight * 0.01,
+                          ),
+                          child: Text(
+                            "No voice notes yet",
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.035,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
-                      ),
+                      } else ...{
+                        for (var voiceNote in noteProvider.voiceNotes) ...{
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.05,
+                              vertical: screenHeight * 0.01,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Voice Note ${noteProvider.voiceNotes.indexOf(voiceNote) + 1}',
+                                  style: TextStyle(
+                                    fontSize: screenWidth * 0.045,
+                                    // Increase the font size for the title
+                                    fontWeight: FontWeight.bold, // Make the title bold
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.play_arrow),
+                                      onPressed: () async {
+                                        await playAudio();
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Icon(Icons.delete),
+                                      onPressed: () {
+                                        noteProvider.voiceNotes.remove(voiceNote);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        },
+                      },
                     ],
                     SizedBox(height: screenHeight * 0.03),
                     GestureDetector(
@@ -347,10 +229,13 @@ class _MySpaceState extends State<MySpacePage> {
                             padding: EdgeInsets.symmetric(
                               horizontal: screenWidth * 0.05,
                             ),
-                            child: ElevatedButton(
-                              onPressed: playAudio,
-                              child: Text('Play Audio'),
-                            )
+                            child: Text (
+                              "Your Reports",
+                              style: TextStyle(
+                                fontSize: screenWidth * 0.04,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                           Icon(
                             isExpandedYourReports

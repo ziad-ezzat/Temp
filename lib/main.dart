@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:gr_project/Views/Pages/login_screen.dart';
 import 'package:gr_project/Views/Pages/start_screen.dart';
+import 'package:provider/provider.dart';
 import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Views/Pages/main_screens/MySpace.dart';
+import 'note_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,12 @@ void main() async {
       ? (seenStartScreen ? const LoginScreen() : const StartScreen())
       : const OnboardingScreen();
 
-  runApp(MainApp(_defaultHome));
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => NoteProvider(),
+        child: MainApp(_defaultHome),
+      ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -28,7 +35,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: defaultHome,
+      home: MySpacePage(),
     );
   }
 }

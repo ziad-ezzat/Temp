@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../../note_provider.dart';
 
 class JournalingVoicePage extends StatefulWidget {
   @override
@@ -14,6 +17,7 @@ class JournalingVoicePage extends StatefulWidget {
 class _JournalingVoicePageState extends State<JournalingVoicePage> {
   final recorder = FlutterSoundRecorder();
   bool isRecorderReady = false;
+  String audioPath = '';
 
   @override
   void initState() {
@@ -50,14 +54,14 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
       return;
     }
 
+    final noteProvider = Provider.of<NoteProvider>(context, listen: false);
+
     // Get the directory where the app can store files.
     final Directory appDocDir = await getApplicationDocumentsDirectory();
 
     // Create a file path under the app directory.
-    final String filePath = '${appDocDir.path}/audio.aac';
+    final String filePath = '${appDocDir.path}/audio${noteProvider.voiceNotes.length+1}.aac';
     await recorder.startRecorder(toFile: filePath);
-
-    // await recorder.startRecorder(toFile: 'audio');
   }
 
   Future stop() async {
@@ -65,25 +69,7 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
       return;
     }
 
-    final bath = await recorder.stopRecorder();
-    if (bath != null)
-    {
-      final audioFile = File(bath);
-      print('audio file: $audioFile');
-
-      await requestStoragePermission();
-
-      // Get the directory where the app can store files.
-      final Directory? appDocDir = await getExternalStorageDirectory();
-
-      // Create a file path under the app directory.
-      final String filePath = '${appDocDir?.path}/audio.aac';
-
-      // Copy the audio file to the new path
-      await audioFile.copy(filePath);
-
-      print('audio file copied to: $filePath');
-    }
+    audioPath = (await recorder.stopRecorder())!;
   }
 
   Future<void> requestStoragePermission() async {
@@ -115,7 +101,29 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.check, color: Colors.black),
-            onPressed: () {
+            onPressed: () async {
+              if (audioPath != null)
+              {
+                final audioFile = File(audioPath);
+
+                await requestStoragePermission();
+
+                final noteProvider = Provider.of<NoteProvider>(context, listen: false);
+
+                // Get the directory where the app can store files.
+                final Directory? appDocDir = await getExternalStorageDirectory();
+
+                // Create a file path under the app directory.
+                final String filePath = '${appDocDir?.path}/audio${noteProvider.voiceNotes.length+1}.aac';
+
+                // Copy the audio file to the new path
+                await audioFile.copy(filePath);
+
+                print('audio file copied to: $filePath');
+
+
+                noteProvider.addVoiceNote(filePath);
+              }
               Navigator.pop(context);
             },
           ),
