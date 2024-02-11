@@ -23,7 +23,8 @@ class _AssesmentThirdState extends State<AssesmentThird> {
           final double screenHeight = constraints.maxHeight;
 
           return SingleChildScrollView(
-              child: Column(children: [
+            child: Column(
+              children: [
                 SizedBox(
                   height: screenHeight * 0.07,
                 ),
@@ -42,17 +43,24 @@ class _AssesmentThirdState extends State<AssesmentThird> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.2,
+                  height: screenHeight * 0.08,
                 ),
-                AssesmetThirdRate(),
+                const AssesmetThirdRate(),
                 SizedBox(
-                  height: screenHeight * 0.35,
+                  height: screenHeight * 0.3,
                 ),
-                buildContinueButton( () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AssesmentFourth()));
-                },
+                buildContinueButton(
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AssesmentFourth(),
+                      ),
+                    );
+                  },
                 ),
-              ]),
+              ],
+            ),
           );
         },
       ),
