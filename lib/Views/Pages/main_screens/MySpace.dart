@@ -32,19 +32,18 @@ class _MySpaceState extends State<MySpacePage> {
     await player.openPlayer();
   }
 
-  Future<void> playAudio() async {
-
-    // Get the directory where the app can store files.
-    final Directory? appDocDir = await getExternalStorageDirectory();
-
-    // Create a file path under the app directory.
-    final String filePath = '${appDocDir?.path}/audio.aac';
+  Future<void> playAudio(String filePath) async {
+    try {
+    if (player.isPlaying) {
+      await player.stopPlayer();
+    }
 
     await player.startPlayer(
       fromURI: filePath,
     );
-
-    print('Playing' + filePath);
+    } catch (e) {
+      print('Error playing audio: $e');
+    }
   }
 
   @override
@@ -191,7 +190,7 @@ class _MySpaceState extends State<MySpacePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Voice Note ${noteProvider.voiceNotes.indexOf(voiceNote) + 1}',
+                                  'Your Voice ${noteProvider.voiceNotes.indexOf(voiceNote) + 1}',
                                   style: TextStyle(
                                     fontSize: screenWidth * 0.045,
                                     // Increase the font size for the title
@@ -203,13 +202,7 @@ class _MySpaceState extends State<MySpacePage> {
                                     IconButton(
                                       icon: Icon(Icons.play_arrow),
                                       onPressed: () async {
-                                        await playAudio();
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.delete),
-                                      onPressed: () {
-                                        noteProvider.voiceNotes.remove(voiceNote);
+                                        await playAudio(voiceNote);
                                       },
                                     ),
                                   ],

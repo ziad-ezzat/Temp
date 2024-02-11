@@ -16,60 +16,37 @@ class JournalingVoicePage extends StatefulWidget {
 
 class _JournalingVoicePageState extends State<JournalingVoicePage> {
   final recorder = FlutterSoundRecorder();
-  bool isRecorderReady = false;
-  String audioPath = '';
 
   @override
   void initState() {
     super.initState();
-
     initRecorder();
   }
 
   @override
   void dispose() {
     recorder.closeRecorder();
-
     super.dispose();
   }
 
-  Future initRecorder() async {
+  Future<void> initRecorder() async {
     final status = await Permission.microphone.request();
-
     if (status != PermissionStatus.granted) {
       throw RecordingPermissionException('Microphone permission not granted');
     }
-
     await recorder.openRecorder();
-
-    isRecorderReady = true;
-
-    recorder.setSubscriptionDuration(
-      const Duration(milliseconds: 500),
-    );
+    recorder.setSubscriptionDuration(const Duration(milliseconds: 500));
   }
 
-  Future record() async {
-    if (!isRecorderReady) {
-      return;
-    }
-
+  Future<void> record() async {
     final noteProvider = Provider.of<NoteProvider>(context, listen: false);
-
-    // Get the directory where the app can store files.
     final Directory appDocDir = await getApplicationDocumentsDirectory();
-
-    // Create a file path under the app directory.
     final String filePath = '${appDocDir.path}/audio${noteProvider.voiceNotes.length+1}.aac';
     await recorder.startRecorder(toFile: filePath);
   }
 
-  Future stop() async {
-    if (!isRecorderReady) {
-      return;
-    }
-
-    audioPath = (await recorder.stopRecorder())!;
+  Future<void> stop() async {
+    await recorder.stopRecorder();
   }
 
   Future<void> requestStoragePermission() async {
@@ -86,42 +63,22 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
-          'Journaling',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.0,
-          ),
-        ),
+        title: Text('Journaling', style: TextStyle(color: Colors.black, fontSize: 20.0)),
         centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.check, color: Colors.black),
             onPressed: () async {
-              if (audioPath != null)
-              {
-                final audioFile = File(audioPath);
-
+              final audioPath = await recorder.stopRecorder();
+              if (audioPath != null) {
                 await requestStoragePermission();
-
                 final noteProvider = Provider.of<NoteProvider>(context, listen: false);
-
-                // Get the directory where the app can store files.
                 final Directory? appDocDir = await getExternalStorageDirectory();
-
-                // Create a file path under the app directory.
                 final String filePath = '${appDocDir?.path}/audio${noteProvider.voiceNotes.length+1}.aac';
-
-                // Copy the audio file to the new path
+                final audioFile = File(audioPath);
                 await audioFile.copy(filePath);
-
-                print('audio file copied to: $filePath');
-
-
                 noteProvider.addVoiceNote(filePath);
               }
               Navigator.pop(context);
@@ -136,21 +93,11 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
             StreamBuilder<RecordingDisposition>(
                 stream: recorder.onProgress,
                 builder: (context, snapshot) {
-                  final duration = snapshot.hasData
-                      && snapshot.data != null
-                      ? snapshot.data!.duration
-                      : Duration.zero;
-
+                  final duration = snapshot.data?.duration ?? Duration.zero;
                   String twoDigits(int n) => n.toString().padLeft(2, '0');
-                  final twoDigitMinutes =
-                      twoDigits(duration.inMinutes.remainder(60));
-                  final twoDigitSeconds =
-                      twoDigits(duration.inSeconds.remainder(60));
-
-                  return Text(
-                    '$twoDigitMinutes:$twoDigitSeconds',
-                    style: TextStyle(fontSize: 40.0),
-                  );
+                  final twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+                  final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+                  return Text('$twoDigitMinutes:$twoDigitSeconds', style: TextStyle(fontSize: 40.0));
                 }),
             const SizedBox(height: 20.0),
             ElevatedButton(
@@ -162,8 +109,7 @@ class _JournalingVoicePageState extends State<JournalingVoicePage> {
                 }
                 setState(() {});
               },
-              child: Icon(recorder.isRecording ? Icons.stop : Icons.mic,
-                  size: 80.0),
+              child: Icon(recorder.isRecording ? Icons.stop : Icons.mic, size: 80.0),
             ),
           ],
         ),
