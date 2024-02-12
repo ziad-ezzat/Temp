@@ -9,7 +9,7 @@ import 'Views/Pages/doctor_service_page.dart';
 import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Views/Pages/main_screens/MySpace.dart';
+import 'Views/Pages/main_screens/Therapist.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'note_provider.dart';
@@ -44,7 +44,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: defaultHome,
+      home: TherapistPage(),
     );
   }
 }
