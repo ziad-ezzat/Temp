@@ -10,6 +10,8 @@ import 'Views/Pages/journaling_voice.dart';
 import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Views/Pages/main_screens/MySpace.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'note_provider.dart';
 
 void main() async {
@@ -20,6 +22,10 @@ void main() async {
   Widget _defaultHome = seenOnboarding
       ? (seenStartScreen ? const LoginScreen() : const StartScreen())
       : const OnboardingScreen();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     ChangeNotifierProvider(

@@ -1,4 +1,4 @@
 enum AccountType {
-  PATIENT,
+  USER,
   THERAPIST,
 }

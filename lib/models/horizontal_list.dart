@@ -26,8 +26,8 @@ Future<List<HorizontalList>> getHorizontalList() async {
   list.add(
     HorizontalList(
       docImage: 'assets/images/Photo.png',
-      docName: mock.therapist.mail,
-      docSpecialist: mock.therapist.type.toString().split('.').last,
+      docName: mock.patient.email,
+      docSpecialist: mock.patient.phoneNumber,
       rate: '4.9 (5587 reviews)',
       price: 350,
       perMinute: 30,

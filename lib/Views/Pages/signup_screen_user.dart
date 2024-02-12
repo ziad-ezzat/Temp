@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gr_project/Control/auth_controller.dart';
+import 'package:gr_project/Model/User.dart';
 
+import '../../Model/RegisterUserRequest.dart';
 import 'assessment_screen/assessment_first.dart';
 import 'login_screen.dart';
 
@@ -19,6 +22,9 @@ class _SignUpProcess1State extends State<SignUpScreen> {
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool isVisible = true;
+
+  final Authentication _auth = Authentication();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -336,10 +342,21 @@ class _SignUpProcess1State extends State<SignUpScreen> {
                           minimumSize: const Size(double.infinity, 50),
                         ),
                         onPressed: () {
-                          Navigator.push(
+                          if (formKey.currentState!.validate()) {
+                            _auth.signUp(
+                              MyUser(
+                                email: emailController.text,
+                                phoneNumber: phoneController.text,
+                                password: passwordController.text,
+                                languagePreference: "en",
+                                country: "Egypt",
+                                )
+                            );
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const AssessmentFirst()));
+                          }
                         },
                         child: const Text(
                           "Sign up",

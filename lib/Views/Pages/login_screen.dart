@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gr_project/Control/auth_controller.dart';
 import 'package:gr_project/Views/Pages/assessment_screen/assessment_first.dart';
 import 'package:gr_project/Views/Pages/forgot_password_screen/email_screen.dart';
 import 'package:gr_project/Views/Pages/main_screens/home_screen.dart';
@@ -20,6 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   bool isPasswordVis = true;
   bool rememberMe = false;
+
+  final Authentication _auth = Authentication();
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 validate: (String? value) {
                   if (value!.isEmpty) {
                     return 'Email Address must not be empty';
+                  }
+                  if (!value.contains('@') || !value.contains('.')) {
+                    return 'Email Address is not valid';
                   }
                   return null;
                 },
@@ -135,8 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(builder: (context) => EmailScreen()),
                       );
                     },
-                    child: const Text(
-                        'Forget Password'),
+                    child: const Text('Forget Password'),
                   ),
                 ],
               ),
@@ -149,14 +155,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   height: 50,
                   child: MaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => myBottomNavBar(),
-                          ),
-                        );
+                        try {
+                          await _auth.login(
+                            emailController.text,
+                            passwordController.text,
+                          );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const myBottomNavBar(),
+                            ),
+                          );
+                        } catch (e) {
+                          String message;
+                          if (e is FirebaseAuthException) {
+                            if (e.code == 'user-not-found') {
+                              message = 'No user found for that email.';
+                            } else if (e.code == 'wrong-password') {
+                              message =
+                                  'Wrong password provided for that user.';
+                            } else if (e.code == 'invalid-credential') {
+                              message =
+                                  'The supplied auth credential is incorrect, malformed or has expired.';
+                            } else {
+                              message = e.message!;
+                            }
+                          } else {
+                            message = e.toString();
+                          }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(message),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
                       }
                     },
                     color: Color(0xFF2196F3),
