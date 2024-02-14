@@ -9,6 +9,7 @@ import '../../../note_provider.dart';
 import '../../Components/start_your_test.dart';
 import '../journaling_text.dart';
 import '../journaling_voice.dart';
+import '../test_screen.dart';
 
 class MySpacePage extends StatefulWidget {
   const MySpacePage({super.key});
@@ -296,7 +297,8 @@ class _MySpaceState extends State<MySpacePage> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print('Start Your test now clicked');
+                                Navigator.push(context, 
+                                MaterialPageRoute(builder: (context) => TestScreen()));
                               },
                               child: Center(
                                 child: Text(

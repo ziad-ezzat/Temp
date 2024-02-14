@@ -6,6 +6,7 @@ import 'package:gr_project/Views/Pages/notifications_screen.dart';
 import 'package:gr_project/models/horizontal_list.dart';
 
 import '../book_screen/appoinyment_screen.dart';
+import '../test_screen.dart';
 
 class HomePages extends StatefulWidget {
   const HomePages({super.key});
@@ -340,7 +341,8 @@ class _HomePagesState extends State<HomePages> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print('Start Your test now clicked');
+                                Navigator.push(context, 
+                                MaterialPageRoute(builder: (context) => TestScreen()));
                               },
                               child: Center(
                                 child: Text(

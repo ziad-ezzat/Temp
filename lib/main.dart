@@ -12,6 +12,8 @@ import 'Views/Pages/onBoarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Views/Pages/main_screens/Therapist.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Views/Pages/result_screen.dart';
+import 'Views/Pages/test_screen.dart';
 import 'firebase_options.dart';
 import 'note_provider.dart';
 
