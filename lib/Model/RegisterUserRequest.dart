@@ -1,7 +1,7 @@
-import 'package:gr_project/Model/User.dart';
+import 'SignupUserRequest.dart';
 
 class RegisterUserRequest {
-  late MyUser data;
+  late SignUserRequest data;
   late String role = 'USER';
   late String password;
 

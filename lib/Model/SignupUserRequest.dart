@@ -1,41 +1,34 @@
-class MyUser {
-  
-  int? id;
+class SignUserRequest {
   String first_name;
   String last_name;
   String email;
   String phoneNumber;
-  String password;
   String languagePreference;
   String country;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String photoURL;
+  String profile_picture;
 
-  MyUser({
-    this.id,
+  SignUserRequest({
     required this.first_name,
     required this.last_name,
     required this.email,
     required this.phoneNumber,
-    required this.password,
     required this.languagePreference,
     required this.country,
-    this.createdAt,
-    this.updatedAt,
+    required this.photoURL,
+    required this.profile_picture,
   });
-  
+
   Map<String,dynamic> toJson() {
     return {
-      'id': id,
       'first_name': first_name,
       'last_name': last_name,
       'email': email,
-      'phoneNumber': phoneNumber,
-      'password': password,
-      'languagePreference': languagePreference,
+      'photoURL': photoURL,
+      'phone_number': phoneNumber,
+      'language_preference': languagePreference,
       'country': country,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
+      'profile_picture': profile_picture,
     };
   }
 }

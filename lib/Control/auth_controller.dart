@@ -3,6 +3,7 @@ import 'package:gr_project/Model/LoginUserRequest.dart';
 import 'package:dio/dio.dart';
 import 'package:gr_project/Model/RegisterUserRequest.dart';
 
+import '../Model/SignupUserRequest.dart';
 import '../Model/User.dart';
 import '../Model/enums/AccountType.dart';
 
@@ -10,7 +11,7 @@ class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Dio _dio = Dio();
 
-  static const _APIBase = 'http://172.22.208.1:3000/auth';
+  static const _APIBase = 'http://10.80.2.71:3000/auth';
   static const _APILogin = '$_APIBase/login';
   static const _APISignUp = '$_APIBase/signup';
 
@@ -39,15 +40,27 @@ class Authentication {
       }
     }
   }
-  Future<void> signUp(MyUser user) async {
+
+  Future<bool> signUp(SignUserRequest user, String password) async {
     try {
       RegisterUserRequest registerUserRequest = RegisterUserRequest();
 
       registerUserRequest.data = user;
-      registerUserRequest.password = user.password;
+      registerUserRequest.password = password;
       registerUserRequest.role = AccountType.USER.toString().split('.').last;
+      registerUserRequest.data.photoURL = user.photoURL;
+      registerUserRequest.data.profile_picture = user.profile_picture;
 
-      await _dio.post(_APISignUp, data: registerUserRequest.toJson());
+      print('==================================');
+      print(registerUserRequest.toJson());
+
+      var response = await _dio.post(_APISignUp, data: registerUserRequest.toJson());
+
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       throw Exception(e);
     }

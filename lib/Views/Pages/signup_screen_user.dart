@@ -3,6 +3,7 @@ import 'package:gr_project/Control/auth_controller.dart';
 import 'package:gr_project/Model/User.dart';
 
 import '../../Model/RegisterUserRequest.dart';
+import '../../Model/SignupUserRequest.dart';
 import 'assessment_screen/assessment_first.dart';
 import 'login_screen.dart';
 
@@ -341,21 +342,32 @@ class _SignUpProcess1State extends State<SignUpScreen> {
                           ),
                           minimumSize: const Size(double.infinity, 50),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            _auth.signUp(
-                              MyUser(
-                                email: emailController.text,
-                                phoneNumber: phoneController.text,
-                                password: passwordController.text,
-                                languagePreference: "en",
-                                country: "Egypt",
-                                )
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AssessmentFirst()));
+                            try {
+                              bool signUpSuccess = await _auth.signUp(
+                                SignUserRequest(
+                                  first_name: firstNameController.text,
+                                  last_name: lastNameController.text,
+                                  email: emailController.text,
+                                  phoneNumber: phoneController.text,
+                                  languagePreference: "en",
+                                  country: "EG",
+                                  photoURL: 'http://www.google.com/ziad',
+                                  profile_picture: 'http://www.google.com/ziad',
+                                ),
+                                passwordController.text,
+                              );
+                              if (signUpSuccess) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const AssessmentFirst()),
+                                );
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
                           }
                         },
                         child: const Text(

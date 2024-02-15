@@ -11,6 +11,8 @@ class Mock {
 
     mock.patient = MyUser(
       id: 1,
+      first_name: 'Ziad',
+      last_name: 'Alsharif',
       email: 'ziad@gmail.com',
       phoneNumber: '1234567890',
       password: 'password',
