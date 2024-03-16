@@ -22,7 +22,9 @@ AppBar buildAppBar(BuildContext context, String title, String actionText) {
     centerTitle: true, // Add this line to center the title
     actions: [
       Padding(
-        padding: EdgeInsets.only(right: 16.0),
+        padding: EdgeInsets.only(
+            right: MediaQuery.of(context).size.width * 0.05,
+            top: MediaQuery.of(context).size.width * 0.05),
         child: Text(
           actionText,
           style: TextStyle(

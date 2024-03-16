@@ -1,23 +1,24 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gr_project/Views/Components/assessment_bar.dart';
 import 'package:gr_project/Views/Components/assessment_btn.dart';
+import 'package:gr_project/Views/Pages/assessment_screen/assessment_sixth.dart';
 
-import 'assesment_third.dart';
-
-class AssessmentSecond extends StatefulWidget {
-  const AssessmentSecond({super.key});
+class AssesmentFive extends StatefulWidget {
+  const AssesmentFive({super.key});
 
   @override
-  State<AssessmentSecond> createState() => _AssessmentSecondState();
+  State<AssesmentFive> createState() => _AssesmentFiveState();
 }
 
-class _AssessmentSecondState extends State<AssessmentSecond> {
+class _AssesmentFiveState extends State<AssesmentFive> {
   double _value = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar(context, "Assessment", "2 of 7"),
+      appBar: buildAppBar(context, "Assessment", "5 of 7"),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final double screenWidth = constraints.maxWidth;
@@ -28,14 +29,14 @@ class _AssessmentSecondState extends State<AssessmentSecond> {
                 height: screenHeight * 0.07,
               ),
               Text(
-                "How would you rate your",
+                "How would you describe",
                 style: TextStyle(
                   fontSize: screenWidth * 0.06,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               Text(
-                "sleep quality?",
+                "your mood?",
                 style: TextStyle(
                   fontSize: screenWidth * 0.06,
                   fontWeight: FontWeight.w600,
@@ -130,7 +131,7 @@ class _AssessmentSecondState extends State<AssessmentSecond> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AssesmentThird()));
+                            builder: (context) => AssessmentSixth()));
                   },
                 ),
               ),

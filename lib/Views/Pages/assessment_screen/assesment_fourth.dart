@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gr_project/Views/Pages/assessment_screen/assesment_five.dart';
 
 import '../../Components/assesment_fourth_rate.dart';
 import '../../Components/assessment_bar.dart';
@@ -16,6 +17,7 @@ class _AssesmentFourthState extends State<AssesmentFourth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context, "Assessment", "4 of 7"),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -64,7 +66,7 @@ class _AssesmentFourthState extends State<AssesmentFourth> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AssessmentSixth(),
+                        builder: (context) => const AssesmentFive(),
                       ),
                     );
                   },

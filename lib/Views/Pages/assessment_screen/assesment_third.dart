@@ -16,6 +16,7 @@ class _AssesmentThirdState extends State<AssesmentThird> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context, "Assessment", "3 of 7"),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {

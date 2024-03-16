@@ -16,6 +16,7 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context, "Assessment", "7 of 7"),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -48,9 +49,11 @@ class _AssessmentSeventhState extends State<AssessmentSeventh> {
             SizedBox(
               height: screenHeight * 0.23,
             ),
-            buildContinueButton( () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const myBottomNavBar())
-              );
+            buildContinueButton(() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const myBottomNavBar()));
             }),
           ],
         );

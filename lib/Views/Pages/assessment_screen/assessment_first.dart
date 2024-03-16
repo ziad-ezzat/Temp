@@ -16,13 +16,15 @@ class _AssessmentFirstState extends State<AssessmentFirst> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context, "Assessment", "1 of 7"),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final double screenWidth = constraints.maxWidth;
           final double screenHeight = constraints.maxHeight;
 
-          return SingleChildScrollView( // Wrap the Column widget with SingleChildScrollView
+          return SingleChildScrollView(
+            // Wrap the Column widget with SingleChildScrollView
             child: Column(
               children: [
                 SizedBox(
@@ -49,9 +51,13 @@ class _AssessmentFirstState extends State<AssessmentFirst> {
                 SizedBox(
                   height: screenHeight * 0.15,
                 ),
-                buildContinueButton( () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AssessmentSecond()));
-                },
+                buildContinueButton(
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AssessmentSecond()));
+                  },
                 ),
               ],
             ),
